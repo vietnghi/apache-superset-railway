@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 RUN pip install --upgrade pip setuptools wheel && \
-    pip install mysqlclient psycopg2 && \
+    pip install mysqlclient psycopg2 google-cloud-bigquery sqlalchemy-bigquery && \
     rm -rf /app/.venv && \
     python3 -m venv /app/.venv --system-site-packages && \
     /app/.venv/bin/pip install --upgrade pip setuptools wheel
