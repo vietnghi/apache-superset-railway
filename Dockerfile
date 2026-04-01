@@ -9,7 +9,11 @@ RUN apt-get update && apt-get install -y \
     build-essential \
     && rm -rf /var/lib/apt/lists/*
 
-RUN pip install --break-system-packages mysqlclient psycopg2
+RUN pip install --upgrade pip setuptools wheel && \
+    pip install mysqlclient psycopg2 && \
+    rm -rf /app/.venv && \
+    python3 -m venv /app/.venv --system-site-packages && \
+    /app/.venv/bin/pip install --upgrade pip setuptools wheel
 
 ENV ADMIN_USERNAME $ADMIN_USERNAME
 ENV ADMIN_EMAIL $ADMIN_EMAIL
